@@ -132,47 +132,53 @@ int main(void) {
 	int cnt = 10;
 	while (1) {
 		switch (cnt) {
+		case 0:
+			display7SEG_y(0, 0, 0, 0, 0, 0, 1);
+			display7SEG_x(0, 0, 0, 0, 0, 0, 1);
+			cnt = 10;
 		case 10:
 			set_LEDS(1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0);
-			display7SEG_x(0, 0, 0, 0, 1, 1, 0);
-			display7SEG_y(0, 1, 0, 0, 1, 0, 0);
+			display7SEG_y(0, 0, 0, 0, 1, 1, 0);
+			display7SEG_x(0, 1, 0, 0, 1, 0, 0);
 			break;
 		case 9:
-			display7SEG_x(0, 0, 1, 0, 0, 1, 0);
-			display7SEG_y(1, 0, 0, 1, 1, 0, 0);
+			display7SEG_y(0, 0, 1, 0, 0, 1, 0);
+			display7SEG_x(1, 0, 0, 1, 1, 0, 0);
 			break;
 		case 8:
-			display7SEG_x(0, 0, 1, 1, 1, 1, 1);
-			display7SEG_y(0, 0, 0, 0, 1, 1, 0);
+			display7SEG_y(1, 0, 0, 1, 1, 1, 1);
+			display7SEG_x(0, 0, 0, 0, 1, 1, 0);
 			break;
 		case 7:
 			set_LEDS(0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1);
-			display7SEG_x(0, 0, 0, 0, 0, 0, 1);
 			display7SEG_y(0, 0, 1, 0, 0, 1, 0);
+			display7SEG_x(0, 0, 1, 0, 0, 1, 0);
 			break;
 		case 6:
-			display7SEG_x(0, 0, 1, 0, 0, 1, 0);
-			display7SEG_y(0, 0, 1, 1, 1, 1, 1);
+			display7SEG_y(1, 0, 0, 1, 1, 1, 1);
+			display7SEG_x(1, 0, 0, 1, 1, 1, 1);
 			break;
 		case 5:
 			set_LEDS(0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0);
-			display7SEG_x(0, 0, 1, 1, 1, 1);
-			display7SEG_y(0, 0, 0, 0, 0, 1);
+			display7SEG_y(0, 1, 0, 0, 1, 0, 0);
+			display7SEG_x(0, 0, 0, 0, 0, 0, 1);
 			break;
 		case 4:
-			display7SEG_x(0, 0, 0, 0, 0, 0, 1);
-			display7SEG_y(0, 0, 0, 0, 1, 1, 0);
+			display7SEG_y(1, 0, 0, 1, 1, 0, 0);
+			display7SEG_x(0, 0, 1, 0, 0, 1, 0);
 			break;
 		case 3:
-			display7SEG_x(0, 0, 0, 0, 1, 1, 0);
-			display7SEG_y(0, 0, 1, 0, 0, 1, 0);
+			display7SEG_y(0, 0, 0, 0, 1, 1, 0);
+			display7SEG_x(1, 0, 0, 1, 1, 1, 1);
 			break;
 		case 2:
 			set_LEDS(0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0);
-			display7SEG_x()
+			display7SEG_y(0, 0, 1, 0, 0, 1, 0);
+			display7SEG_x(0, 0, 0, 0, 0, 0, 1);
 			break;
 		case 1:
-			cnt = 11;
+			display7SEG_y(1, 0, 0, 1, 1, 1, 1);
+			display7SEG_x(1, 0, 0, 1, 1, 1, 1);
 			break;
 		default:
 			break;
