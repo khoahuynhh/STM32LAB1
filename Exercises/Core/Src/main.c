@@ -132,10 +132,6 @@ int main(void) {
 	int cnt = 10;
 	while (1) {
 		switch (cnt) {
-		case 0:
-			display7SEG_y(0, 0, 0, 0, 0, 0, 1);
-			display7SEG_x(0, 0, 0, 0, 0, 0, 1);
-			cnt = 10;
 		case 10:
 			set_LEDS(1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0);
 			display7SEG_y(0, 0, 0, 0, 1, 1, 0);
@@ -161,7 +157,7 @@ int main(void) {
 		case 5:
 			set_LEDS(0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0);
 			display7SEG_y(0, 1, 0, 0, 1, 0, 0);
-			display7SEG_x(0, 0, 0, 0, 0, 0, 1);
+			display7SEG_x(0, 0, 0, 0, 1, 1, 0);
 			break;
 		case 4:
 			display7SEG_y(1, 0, 0, 1, 1, 0, 0);
@@ -174,11 +170,12 @@ int main(void) {
 		case 2:
 			set_LEDS(0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0);
 			display7SEG_y(0, 0, 1, 0, 0, 1, 0);
-			display7SEG_x(0, 0, 0, 0, 0, 0, 1);
+			display7SEG_x(0, 0, 1, 0, 0, 1, 0);
 			break;
 		case 1:
 			display7SEG_y(1, 0, 0, 1, 1, 1, 1);
 			display7SEG_x(1, 0, 0, 1, 1, 1, 1);
+			cnt = 11;
 			break;
 		default:
 			break;
