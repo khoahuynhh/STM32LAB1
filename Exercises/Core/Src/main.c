@@ -102,7 +102,9 @@ int main(void) {
 		for (int i = 0; i < 12; i++) {
 			HAL_GPIO_WritePin(LED_PORTS[cnt], LED_PINS[cnt], 0);
 		}
-
+	}
+	void setNumberOnClock(int num) {
+		HAL_GPIO_WritePin(LED_PORTS[num], LED_PINS[num], 1);
 	}
 	while (1) {
 		if (cnt >= 12) {
