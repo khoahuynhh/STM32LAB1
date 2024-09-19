@@ -91,11 +91,10 @@ int main(void) {
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	GPIO_TypeDef *SEG_PORTS[12] = { SEG_0_GPIO_Port, SEG_1_GPIO_Port,
-	SEG_2_GPIO_Port, SEG_3_GPIO_Port, SEG_4_GPIO_Port, SEG_5_GPIO_Port,
-	SEG_6_GPIO_Port };
+			SEG_2_GPIO_Port, SEG_3_GPIO_Port, SEG_4_GPIO_Port, SEG_5_GPIO_Port,
+			SEG_6_GPIO_Port };
 	uint16_t SEG_PINS[12] = { SEG_0_Pin, SEG_1_Pin, SEG_2_Pin, SEG_3_Pin,
-	SEG_4_Pin,
-	SEG_5_Pin, SEG_6_Pin };
+			SEG_4_Pin, SEG_5_Pin, SEG_6_Pin };
 	GPIO_PinState LEDS_state[10][7] = { { 0, 0, 0, 0, 0, 0, 1 }, { 1, 0, 0, 1,
 			1, 1, 1 }, { 0, 0, 1, 0, 0, 1, 0 }, { 0, 0, 0, 0, 1, 1, 0 }, { 1, 0,
 			0, 1, 1, 0, 0 }, { 0, 1, 0, 0, 1, 0, 0 }, { 0, 1, 0, 0, 0, 0, 0 }, {
