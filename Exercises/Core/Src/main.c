@@ -90,91 +90,89 @@ int main(void) {
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-	void set_LEDS(GPIO_PinState led_1, GPIO_PinState led_2, GPIO_PinState led_3,
-			GPIO_PinState led_4, GPIO_PinState led_5, GPIO_PinState led_6,
-			GPIO_PinState led_7, GPIO_PinState led_8, GPIO_PinState led_9,
-			GPIO_PinState led_10, GPIO_PinState led_11, GPIO_PinState led_12) {
-		HAL_GPIO_WritePin(LED_1_GPIO_Port, LED_1_Pin, led_1);
-		HAL_GPIO_WritePin(LED_2_GPIO_Port, LED_2_Pin, led_2);
-		HAL_GPIO_WritePin(LED_3_GPIO_Port, LED_3_Pin, led_3);
-		HAL_GPIO_WritePin(LED_4_GPIO_Port, LED_4_Pin, led_4);
-		HAL_GPIO_WritePin(LED_5_GPIO_Port, LED_5_Pin, led_5);
-		HAL_GPIO_WritePin(LED_6_GPIO_Port, LED_6_Pin, led_6);
-		HAL_GPIO_WritePin(LED_7_GPIO_Port, LED_7_Pin, led_7);
-		HAL_GPIO_WritePin(LED_8_GPIO_Port, LED_8_Pin, led_8);
-		HAL_GPIO_WritePin(LED_9_GPIO_Port, LED_9_Pin, led_9);
-		HAL_GPIO_WritePin(LED_10_GPIO_Port, LED_10_Pin, led_10);
-		HAL_GPIO_WritePin(LED_11_GPIO_Port, LED_11_Pin, led_11);
-		HAL_GPIO_WritePin(LED_12_GPIO_Port, LED_12_Pin, led_12);
+	GPIO_TypeDef *LED_PORTS[12] = { LED_1_GPIO_Port, LED_2_GPIO_Port,
+	LED_3_GPIO_Port, LED_4_GPIO_Port, LED_5_GPIO_Port, LED_6_GPIO_Port,
+	LED_7_GPIO_Port, LED_8_GPIO_Port, LED_9_GPIO_Port, LED_10_GPIO_Port,
+	LED_11_GPIO_Port, LED_12_GPIO_Port };
+	uint16_t LED_PINS[12] = { LED_1_Pin, LED_2_Pin, LED_3_Pin, LED_4_Pin,
+	LED_5_Pin, LED_6_Pin, LED_7_Pin, LED_8_Pin, LED_9_Pin, LED_10_Pin,
+	LED_11_Pin, LED_12_Pin };
+	GPIO_PinState LEDS_state[4][12] = { { 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
+			{ 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1 }, { 0, 0, 0, 1, 1, 0, 0, 0, 0,
+					1, 1, 0 }, { 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0 } };
+	void set_LEDS(const GPIO_PinState *state) {
+		for (int i = 0; i < 12; i++) {
+			HAL_GPIO_WritePin(LED_PORTS[i], LED_PINS[i], state[i]);
+		}
 	}
-	void display7SEG_x(GPIO_PinState seg_0, GPIO_PinState seg_1,
-			GPIO_PinState seg_2, GPIO_PinState seg_3, GPIO_PinState seg_4,
-			GPIO_PinState seg_5, GPIO_PinState seg_6) {
-		HAL_GPIO_WritePin(SEG_0_GPIO_Port, SEG_0_Pin, seg_0);
-		HAL_GPIO_WritePin(SEG_1_GPIO_Port, SEG_1_Pin, seg_1);
-		HAL_GPIO_WritePin(SEG_2_GPIO_Port, SEG_2_Pin, seg_2);
-		HAL_GPIO_WritePin(SEG_3_GPIO_Port, SEG_3_Pin, seg_3);
-		HAL_GPIO_WritePin(SEG_4_GPIO_Port, SEG_4_Pin, seg_4);
-		HAL_GPIO_WritePin(SEG_5_GPIO_Port, SEG_5_Pin, seg_5);
-		HAL_GPIO_WritePin(SEG_6_GPIO_Port, SEG_6_Pin, seg_6);
+	GPIO_TypeDef *SEG_PORTS[14] = { SEG_0_GPIO_Port, SEG_1_GPIO_Port,
+	SEG_2_GPIO_Port, SEG_3_GPIO_Port, SEG_4_GPIO_Port, SEG_5_GPIO_Port,
+	SEG_6_GPIO_Port, SEG_7_GPIO_Port, SEG_8_GPIO_Port, SEG_9_GPIO_Port,
+	SEG_10_GPIO_Port, SEG_11_GPIO_Port, SEG_12_GPIO_Port,
+	SEG_13_GPIO_Port };
+	uint16_t SEG_PINS[14] = { SEG_0_Pin, SEG_1_Pin, SEG_2_Pin, SEG_3_Pin,
+	SEG_4_Pin, SEG_5_Pin, SEG_6_Pin, SEG_7_Pin, SEG_8_Pin, SEG_9_Pin,
+	SEG_10_Pin, SEG_11_Pin, SEG_12_Pin, SEG_13_Pin };
+	GPIO_PinState LEDS_7SEG_state[6][7] = { { 0, 0, 0, 0, 0, 0, 1 }, { 1, 0, 0,
+			1, 1, 1, 1 }, { 0, 0, 1, 0, 0, 1, 0 }, { 0, 0, 0, 0, 1, 1, 0 }, { 1,
+			0, 0, 1, 1, 0, 0 }, { 0, 1, 0, 0, 1, 0, 0 } };
+	void set_7SEG_X(const GPIO_PinState *L_LEDS_X_state) {
+		for (int i = 0; i < 7; i++) {
+			HAL_GPIO_WritePin(SEG_PORTS[i], SEG_PINS[i], L_LEDS_X_state[i]);
+		}
 	}
-	void display7SEG_y(GPIO_PinState seg_7, GPIO_PinState seg_8,
-			GPIO_PinState seg_9, GPIO_PinState seg_10, GPIO_PinState seg_11,
-			GPIO_PinState seg_12, GPIO_PinState seg_13) {
-		HAL_GPIO_WritePin(SEG_7_GPIO_Port, SEG_7_Pin, seg_7);
-		HAL_GPIO_WritePin(SEG_8_GPIO_Port, SEG_8_Pin, seg_8);
-		HAL_GPIO_WritePin(SEG_9_GPIO_Port, SEG_9_Pin, seg_9);
-		HAL_GPIO_WritePin(SEG_10_GPIO_Port, SEG_10_Pin, seg_10);
-		HAL_GPIO_WritePin(SEG_11_GPIO_Port, SEG_11_Pin, seg_11);
-		HAL_GPIO_WritePin(SEG_12_GPIO_Port, SEG_12_Pin, seg_12);
-		HAL_GPIO_WritePin(SEG_13_GPIO_Port, SEG_13_Pin, seg_13);
+	void set_7SEG_Y(const GPIO_PinState *L_LEDS_Y_state) {
+		for (int i = 0; i < 7; i++) {
+			HAL_GPIO_WritePin(SEG_PORTS[i + 7], SEG_PINS[i + 7],
+					L_LEDS_Y_state[i]);
+		}
 	}
 	int cnt = 10;
 	while (1) {
 		switch (cnt) {
 		case 10:
-			set_LEDS(1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0);
-			display7SEG_y(0, 0, 0, 0, 1, 1, 0);
-			display7SEG_x(0, 1, 0, 0, 1, 0, 0);
+			set_LEDS(LEDS_state[0]);
+			set_7SEG_Y(LEDS_7SEG_state[3]);
+			set_7SEG_X(LEDS_7SEG_state[5]);
 			break;
 		case 9:
-			display7SEG_y(0, 0, 1, 0, 0, 1, 0);
-			display7SEG_x(1, 0, 0, 1, 1, 0, 0);
+			set_7SEG_Y(LEDS_7SEG_state[2]);
+			set_7SEG_X(LEDS_7SEG_state[4]);
 			break;
 		case 8:
-			display7SEG_y(1, 0, 0, 1, 1, 1, 1);
-			display7SEG_x(0, 0, 0, 0, 1, 1, 0);
+			set_7SEG_Y(LEDS_7SEG_state[1]);
+			set_7SEG_X(LEDS_7SEG_state[3]);
 			break;
 		case 7:
-			set_LEDS(0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1);
-			display7SEG_y(0, 0, 1, 0, 0, 1, 0);
-			display7SEG_x(0, 0, 1, 0, 0, 1, 0);
+			set_LEDS(LEDS_state[1]);
+			set_7SEG_Y(LEDS_7SEG_state[2]);
+			set_7SEG_X(LEDS_7SEG_state[2]);
 			break;
 		case 6:
-			display7SEG_y(1, 0, 0, 1, 1, 1, 1);
-			display7SEG_x(1, 0, 0, 1, 1, 1, 1);
+			set_7SEG_Y(LEDS_7SEG_state[1]);
+			set_7SEG_X(LEDS_7SEG_state[1]);
 			break;
 		case 5:
-			set_LEDS(0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0);
-			display7SEG_y(0, 1, 0, 0, 1, 0, 0);
-			display7SEG_x(0, 0, 0, 0, 1, 1, 0);
+			set_LEDS(LEDS_state[2]);
+			set_7SEG_Y(LEDS_7SEG_state[5]);
+			set_7SEG_X(LEDS_7SEG_state[3]);
 			break;
 		case 4:
-			display7SEG_y(1, 0, 0, 1, 1, 0, 0);
-			display7SEG_x(0, 0, 1, 0, 0, 1, 0);
+			set_7SEG_Y(LEDS_7SEG_state[4]);
+			set_7SEG_X(LEDS_7SEG_state[2]);
 			break;
 		case 3:
-			display7SEG_y(0, 0, 0, 0, 1, 1, 0);
-			display7SEG_x(1, 0, 0, 1, 1, 1, 1);
+			set_7SEG_Y(LEDS_7SEG_state[3]);
+			set_7SEG_X(LEDS_7SEG_state[1]);
 			break;
 		case 2:
-			set_LEDS(0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0);
-			display7SEG_y(0, 0, 1, 0, 0, 1, 0);
-			display7SEG_x(0, 0, 1, 0, 0, 1, 0);
+			set_LEDS(LEDS_state[3]);
+			set_7SEG_Y(LEDS_7SEG_state[2]);
+			set_7SEG_X(LEDS_7SEG_state[2]);
 			break;
 		case 1:
-			display7SEG_y(1, 0, 0, 1, 1, 1, 1);
-			display7SEG_x(1, 0, 0, 1, 1, 1, 1);
+			set_7SEG_Y(LEDS_7SEG_state[1]);
+			set_7SEG_X(LEDS_7SEG_state[1]);
 			cnt = 11;
 			break;
 		default:
