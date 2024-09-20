@@ -105,9 +105,6 @@ int main(void) {
 	void setNumberOnClock(int num) {
 		HAL_GPIO_WritePin(LED_PORTS[num], LED_PINS[num], 1);
 	}
-	void clearNumberOnClock(int num) {
-		HAL_GPIO_WritePin(LED_PORTS[num], LED_PINS[num], 0);
-	}
 	int cnt_hour = 0;
 	int cnt_min = 0;
 	int cnt_sec = 0;
@@ -115,7 +112,7 @@ int main(void) {
 		setNumberOnClock(cnt_hour);
 		setNumberOnClock(cnt_min / 5);
 		setNumberOnClock(cnt_sec / 5);
-		HAL_Delay(1);
+		HAL_Delay(1000);
 		cnt_sec++;
 		if (cnt_sec == 60) {
 			cnt_sec = 0;
