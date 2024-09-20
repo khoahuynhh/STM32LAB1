@@ -97,10 +97,9 @@ int main(void) {
 	uint16_t LED_PINS[12] = { LED_1_Pin, LED_2_Pin, LED_3_Pin, LED_4_Pin,
 	LED_5_Pin, LED_6_Pin, LED_7_Pin, LED_8_Pin, LED_9_Pin, LED_10_Pin,
 	LED_11_Pin, LED_12_Pin };
-	int cnt = 0;
 	void clearAllClock() {
 		for (int i = 0; i < 12; i++) {
-			HAL_GPIO_WritePin(LED_PORTS[cnt], LED_PINS[cnt], 0);
+			HAL_GPIO_WritePin(LED_PORTS[i], LED_PINS[i], 0);
 		}
 	}
 	void setNumberOnClock(int num) {
@@ -109,14 +108,27 @@ int main(void) {
 	void clearNumberOnClock(int num) {
 		HAL_GPIO_WritePin(LED_PORTS[num], LED_PINS[num], 0);
 	}
+	int cnt_hour = 0;
+	int cnt_min = 0;
+	int cnt_sec = 0;
 	while (1) {
-		if (cnt >= 12) {
-			cnt = 0;
+		setNumberOnClock(cnt_hour);
+		setNumberOnClock(cnt_min / 5);
+		setNumberOnClock(cnt_sec / 5);
+		HAL_Delay(1);
+		cnt_sec++;
+		if (cnt_sec == 60) {
+			cnt_sec = 0;
+			cnt_min++;
 		}
-		HAL_GPIO_WritePin(LED_PORTS[cnt], LED_PINS[cnt], 1);
-		HAL_Delay(1000);
-		HAL_GPIO_WritePin(LED_PORTS[cnt], LED_PINS[cnt], 0);
-		cnt++;
+		if (cnt_min == 60) {
+			cnt_min = 0;
+			cnt_hour++;
+		}
+		if (cnt_hour == 12) {
+			cnt_hour = 0;
+		}
+		clearAllClock();
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
