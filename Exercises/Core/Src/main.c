@@ -100,7 +100,7 @@ int main(void) {
 	int cnt = 0;
 	void clearAllClock() {
 		for (int i = 0; i < 12; i++) {
-			HAL_GPIO_WritePin(LED_PORTS[cnt], LED_PINS[cnt], 0);
+			HAL_GPIO_WritePin(LED_PORTS[i], LED_PINS[i], 0);
 		}
 
 	}
