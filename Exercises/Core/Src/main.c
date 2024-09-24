@@ -112,7 +112,7 @@ int main(void) {
 		setNumberOnClock(cnt_hour);
 		setNumberOnClock(cnt_min / 5);
 		setNumberOnClock(cnt_sec / 5);
-		HAL_Delay(1000);
+		HAL_Delay(10);
 		cnt_sec++;
 		if (cnt_sec == 60) {
 			cnt_sec = 0;
