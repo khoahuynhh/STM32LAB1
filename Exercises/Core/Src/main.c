@@ -54,7 +54,56 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+GPIO_TypeDef *SEG_PORTS[12] = { SEG_0_GPIO_Port, SEG_1_GPIO_Port,
+		SEG_2_GPIO_Port, SEG_3_GPIO_Port, SEG_4_GPIO_Port, SEG_5_GPIO_Port,
+		SEG_6_GPIO_Port };
+uint16_t SEG_PINS[12] = { SEG_0_Pin, SEG_1_Pin, SEG_2_Pin, SEG_3_Pin, SEG_4_Pin,
+		SEG_5_Pin, SEG_6_Pin };
+GPIO_PinState LEDS_state[10][7] = { { 0, 0, 0, 0, 0, 0, 1 }, { 1, 0, 0, 1, 1, 1,
+		1 }, { 0, 0, 1, 0, 0, 1, 0 }, { 0, 0, 0, 0, 1, 1, 0 }, { 1, 0, 0, 1, 1,
+		0, 0 }, { 0, 1, 0, 0, 1, 0, 0 }, { 0, 1, 0, 0, 0, 0, 0 }, { 0, 0, 0, 1,
+		1, 1, 1 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 1, 0, 0 } };
+void set_LEDS(GPIO_PinState *L_LEDS_state) {
+	for (int i = 0; i < 7; i++) {
+		HAL_GPIO_WritePin(SEG_PORTS[i], SEG_PINS[i], L_LEDS_state[i]);
+	}
+}
+void display7SEG(int number) {
+	switch (number) {
+	case 0:
+		set_LEDS(LEDS_state[0]);
+		break;
+	case 1:
+		set_LEDS(LEDS_state[1]);
+		break;
+	case 2:
+		set_LEDS(LEDS_state[2]);
+		break;
+	case 3:
+		set_LEDS(LEDS_state[3]);
+		break;
+	case 4:
+		set_LEDS(LEDS_state[4]);
+		break;
+	case 5:
+		set_LEDS(LEDS_state[5]);
+		break;
+	case 6:
+		set_LEDS(LEDS_state[6]);
+		break;
+	case 7:
+		set_LEDS(LEDS_state[7]);
+		break;
+	case 8:
+		set_LEDS(LEDS_state[8]);
+		break;
+	case 9:
+		set_LEDS(LEDS_state[9]);
+		break;
+	default:
+		break;
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -90,57 +139,6 @@ int main(void) {
 
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
-	GPIO_TypeDef *SEG_PORTS[12] = { SEG_0_GPIO_Port, SEG_1_GPIO_Port,
-			SEG_2_GPIO_Port, SEG_3_GPIO_Port, SEG_4_GPIO_Port, SEG_5_GPIO_Port,
-			SEG_6_GPIO_Port };
-	uint16_t SEG_PINS[12] = { SEG_0_Pin, SEG_1_Pin, SEG_2_Pin, SEG_3_Pin,
-			SEG_4_Pin, SEG_5_Pin, SEG_6_Pin };
-	GPIO_PinState LEDS_state[10][7] = { { 0, 0, 0, 0, 0, 0, 1 }, { 1, 0, 0, 1,
-			1, 1, 1 }, { 0, 0, 1, 0, 0, 1, 0 }, { 0, 0, 0, 0, 1, 1, 0 }, { 1, 0,
-			0, 1, 1, 0, 0 }, { 0, 1, 0, 0, 1, 0, 0 }, { 0, 1, 0, 0, 0, 0, 0 }, {
-			0, 0, 0, 1, 1, 1, 1 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 1, 0,
-			0 } };
-	void set_LEDS(GPIO_PinState *L_LEDS_state) {
-		for (int i = 0; i < 7; i++) {
-			HAL_GPIO_WritePin(SEG_PORTS[i], SEG_PINS[i], L_LEDS_state[i]);
-		}
-	}
-	void display7SEG(int number) {
-		switch (number) {
-		case 0:
-			set_LEDS(LEDS_state[0]);
-			break;
-		case 1:
-			set_LEDS(LEDS_state[1]);
-			break;
-		case 2:
-			set_LEDS(LEDS_state[2]);
-			break;
-		case 3:
-			set_LEDS(LEDS_state[3]);
-			break;
-		case 4:
-			set_LEDS(LEDS_state[4]);
-			break;
-		case 5:
-			set_LEDS(LEDS_state[5]);
-			break;
-		case 6:
-			set_LEDS(LEDS_state[6]);
-			break;
-		case 7:
-			set_LEDS(LEDS_state[7]);
-			break;
-		case 8:
-			set_LEDS(LEDS_state[8]);
-			break;
-		case 9:
-			set_LEDS(LEDS_state[9]);
-			break;
-		default:
-			break;
-		}
-	}
 	int counter = 0;
 	while (1) {
 		if (counter >= 10)
